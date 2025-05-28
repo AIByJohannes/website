@@ -1,4 +1,4 @@
-# Johannes Copeland - AI Engineer & Content Creator Portfolio
+# Johannes Copeland - Portfolio Website
 
 Welcome to the repository for my personal portfolio website! This site showcases my work as an AI Engineer, my journey in artificial intelligence, and my content creation efforts on YouTube.
 
