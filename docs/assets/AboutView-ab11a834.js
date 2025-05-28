@@ -1,1 +1,0 @@
-import{_ as t,o,c as s,a as e}from"./index-99f278b7.js";const n={},_={class:"about"},a=e("h1",null,"Hey there",-1),c=e("p",null," I'm Johannes, a software engineer and AI enthusiast. I love to build things and share my knowledge with others. ",-1),r=[a,c];function i(d,l){return o(),s("div",_,r)}const u=t(n,[["render",i]]);export{u as default};
