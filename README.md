@@ -1,54 +1,69 @@
-# React + TypeScript + Vite
+# Johannes Copeland - AI Engineer & Content Creator Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the repository for my personal portfolio website! This site showcases my work as an AI Engineer, my journey in artificial intelligence, and my content creation efforts on YouTube.
 
-Currently, two official plugins are available:
+[//]: # (**Live Site:** [johannescopeland.com]&#40;https://johannescopeland.com&#41; )
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 About This Project
 
-## Expanding the ESLint configuration
+This portfolio is a single-page application built with modern web technologies to provide a clean, fast, and engaging user experience. It serves as a central hub for my professional background, projects, skills, and a way to connect with me.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+* **Dynamic Sections:**
+    * **Home:** A welcoming introduction.
+    * **About Me:** Detailed bio, skills, and interests.
+    * **Projects:** Showcase of my key software and AI projects.
+    * **YouTube:** Highlights from my YouTube channel focused on AI and productivity.
+    * **Contact:** A form to get in touch and links to my social profiles.
+* **Dark Mode:** Toggle between light and dark themes for comfortable viewing.
+* **Responsive Design:** Optimized for various devices and screen sizes.
+* **Interactive UI:** Built with React for a smooth and interactive experience.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* **Frontend:** React, TypeScript
+* **Build Tool:** Vite
+* **Styling:** Tailwind CSS
+* **Icons:** Lucide React
+* **Linting:** ESLint, TypeScript-ESLint
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🚀 Getting Started
+
+This project was bootstrapped with a Vite template for React and TypeScript.
+
+### Prerequisites
+
+* Node.js (v18.x or higher recommended for Vite)
+* npm (v8.x or higher recommended)
+
+### Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/AIByJohannes/website.git](https://github.com/AIByJohannes/website.git) # Replace with your actual repo URL
+    cd website
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+### Available Scripts
+
+In the project directory, you can run the following commands from your `package.json`:
+
+* **`npm run dev`**
+  Runs the app in development mode with Hot Module Replacement (HMR).
+  Open [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal) to view it in the browser.
+
+* **`npm run build`**
+  Builds the app for production to the `dist` folder.
+  It correctly bundles React in production mode and optimizes the build for the best performance.
+
+* **`npm run lint`**
+  Lints the project files using ESLint.
+
+* **`npm run preview`**
+  Serves the production build locally to preview it.
