@@ -24,27 +24,25 @@ export const userProfile = {
   ],
   projects: [
     {
-      id: 1,
-      title: 'AI-Powered Recommendation System',
-      description:
-        'Developed a content recommendation engine using collaborative filtering and NLP techniques.',
-      technologies: ['Python', 'PyTorch', 'FastAPI'],
-      link: '#',
+      id: 'alfred',
+      title: 'Alfred',
+      description: 'A personal AI assistant and tooling ecosystem.',
+      technologies: ['Python', 'TypeScript', 'AI'],
+      link: 'https://github.com/AIByJohannes/alfred',
     },
     {
-      id: 2,
-      title: 'YouTube Content Automation',
-      description:
-        'Building tools to streamline video creation and analysis for my AI channel.',
-      technologies: ['Python', 'OpenAI API', 'FFmpeg'],
-      link: '#',
+      id: 'elitelm',
+      title: 'EliteLM',
+      description: 'Explorations and tooling around LLMs and ML systems.',
+      technologies: ['Python', 'LLMs', 'ML'],
+      link: 'https://github.com/AIByJohannes/elitelm',
     },
     {
-      id: 3,
-      title: 'Personal Portfolio Website',
-      description: 'This very website, built with React and Tailwind CSS.',
-      technologies: ['React', 'Tailwind CSS', 'JavaScript'],
-      link: '#',
+      id: 'alfred-android',
+      title: 'Alfred Android',
+      description: 'Android client for the Alfred assistant.',
+      technologies: ['Kotlin', 'Android'],
+      link: 'https://github.com/AIByJohannes/alfred-android',
     },
   ],
   youtubeVideos: [

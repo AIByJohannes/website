@@ -12,14 +12,40 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
   type ProjectItem = { id: number | string; title: string; description: string; technologies: string[]; link: string };
   const [ghProjects, setGhProjects] = useState<ProjectItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [, setError] = useState<string | null>(null);
+
+  // Simple local cache to reduce API calls and avoid hitting rate limits too often
+  const CACHE_KEY = 'gh_projects_cache_v1';
+  const CACHE_TTL_MS = 1000 * 60 * 60 * 6; // 6 hours
 
   useEffect(() => {
     let active = true;
-    const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } as const;
+    const token = import.meta.env?.VITE_GITHUB_TOKEN as string | undefined;
+    const headers: Record<string, string> = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    };
+    if (token) headers.Authorization = `Bearer ${token}`;
 
     async function fetchProjects() {
       setLoading(true);
+      setError(null);
       try {
+        // Try cache first
+        const cachedRaw = typeof window !== 'undefined' ? localStorage.getItem(CACHE_KEY) : null;
+        if (cachedRaw) {
+          try {
+            const cached = JSON.parse(cachedRaw) as { ts: number; data: ProjectItem[] };
+            const isFresh = Date.now() - cached.ts < CACHE_TTL_MS;
+            if (isFresh && cached.data?.length) {
+              if (active) setGhProjects(cached.data);
+              // Still revalidate in background
+            }
+          } catch {
+            // ignore cache parse errors
+          }
+        }
+
         const owner = 'AIByJohannes';
         const repos = ['alfred', 'elitelm', 'alfred-android'];
         const fetched = await Promise.all(
@@ -29,7 +55,16 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
               fetch(`https://api.github.com/repos/${owner}/${name}/topics`, { headers }),
               fetch(`https://api.github.com/repos/${owner}/${name}/languages`, { headers }),
             ]);
-            if (!repoRes.ok) throw new Error('repo fetch failed');
+
+            if (!repoRes.ok) {
+              // Bubble up a helpful message for rate limits
+              if (repoRes.status === 403) {
+                const text = await repoRes.text();
+                throw new Error('GitHub rate limit hit. Add VITE_GITHUB_TOKEN or wait and retry. ' + text);
+              }
+              throw new Error(`Repo fetch failed for ${name} (${repoRes.status})`);
+            }
+
             const repo = await repoRes.json();
             const topicsJson = topicsRes.ok ? await topicsRes.json() : { names: [] };
             const langsJson = langsRes.ok ? await langsRes.json() : {};
@@ -46,9 +81,30 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
             } as ProjectItem;
           })
         );
-        if (active) setGhProjects(fetched);
-      } catch {
-        // fall back silently
+        if (active) {
+          setGhProjects(fetched);
+          try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: fetched }));
+          } catch {
+            // ignore storage errors
+          }
+        }
+    } catch (e: unknown) {
+        // fall back gracefully and surface a small hint if rate-limited
+        if (active) {
+      const msg = e instanceof Error ? e.message : 'Failed to load GitHub projects. Showing fallback.';
+      setError(msg);
+          // If we have stale cache, prefer showing that
+          try {
+            const cachedRaw = localStorage.getItem(CACHE_KEY);
+            if (cachedRaw) {
+              const cached = JSON.parse(cachedRaw) as { ts: number; data: ProjectItem[] };
+              if (cached.data?.length) setGhProjects(cached.data);
+            }
+          } catch {
+            // ignore cache parse errors
+          }
+        }
       } finally {
         if (active) setLoading(false);
       }
@@ -58,7 +114,7 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
     return () => {
       active = false;
     };
-  }, []);
+  }, [CACHE_KEY, CACHE_TTL_MS]);
 
   const projects = ghProjects.length ? ghProjects : userProfile.projects;
 
@@ -67,6 +123,7 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
       {loading && !ghProjects.length && (
         <p className={`${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-500'}`}>Loading projects…</p>
       )}
+  {/* Intentionally no error message shown to users; fallback projects render silently. */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <div
