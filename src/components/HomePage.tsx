@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { oneDark } from '../theme';
 import { userProfile } from '../data/profile';
+import profileImage from '../assets/pfp_2025.jpg';
 
 export interface HomePageProps {
   setCurrentPage: Dispatch<SetStateAction<string>>;
@@ -16,15 +17,11 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
     >
       <div className="text-center max-w-3xl">
         <img
-          src={`https://placehold.co/150x150/${oneDark.blue.substring(1)}/${oneDark.fg.substring(1)}?text=${userProfile.name.substring(0, 1)}`}
+          src={profileImage}
           alt={userProfile.name}
-          className={`w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 shadow-xl border-4 ${
+          className={`w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 shadow-xl border-4 object-cover ${
             darkMode ? `border-[${oneDark.comment}]` : 'border-white'
           }`}
-          onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-            (e.target as HTMLImageElement).onerror = null;
-            (e.target as HTMLImageElement).src = `https://placehold.co/150x150/7c3aed/white?text=Error`;
-          }}
         />
         <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900'}`}>
           Hi, I'm <span className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-purple-600'}`}>{userProfile.name}</span>

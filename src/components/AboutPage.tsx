@@ -1,6 +1,7 @@
 import { oneDark } from '../theme';
 import { userProfile } from '../data/profile';
 import SectionWrapper from './SectionWrapper';
+import profileImage from '../assets/pfp_2025.jpg';
 
 export interface AboutPageProps {
   darkMode: boolean;
@@ -12,13 +13,9 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div className={`${darkMode ? `bg-[${oneDark.bg}] border border-[${oneDark.comment}]` : 'bg-gray-50'} p-6 sm:p-8 rounded-xl shadow-lg`}>
           <img
-            src={`https://placehold.co/400x400/${oneDark.magenta.substring(1)}/${oneDark.fg.substring(1)}?text=Johannes+AI`}
+            src={profileImage}
             alt="Johannes - AI Engineer"
             className="rounded-lg shadow-md mx-auto mb-6 w-full max-w-xs object-cover"
-            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-              (e.target as HTMLImageElement).onerror = null;
-              (e.target as HTMLImageElement).src = `https://placehold.co/400x400/a78bfa/white?text=Error`;
-            }}
           />
           <h3 className={`text-2xl font-semibold mb-3 ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900'}`}>{userProfile.name}</h3>
           <p className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-purple-600'} font-medium mb-4`}>{userProfile.tagline}</p>
