@@ -19,7 +19,7 @@ const oneDark = {
 
 // Mock data - in a real app, this might come from an API or a more structured source
 const userProfile = {
-    name: "Johannes",
+    name: "Johannes Copeland",
     tagline: "AI Engineer & Content Creator",
     location: "Hamburg, Germany 🇩🇪",
     email: "contact@johannescopeland.com",
