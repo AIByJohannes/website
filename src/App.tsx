@@ -418,15 +418,15 @@ const Footer = ({ darkMode }: FooterProps) => {
 
 export default function App() {
     const [currentPage, setCurrentPage] = useState("home");
-    const [darkMode, setDarkModeState] = useState(false);
+    const [darkMode, setDarkModeState] = useState(true);
 
     useEffect(() => {
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         const storedPreference = localStorage.getItem('darkMode');
         if (storedPreference !== null) {
             setDarkModeState(storedPreference === 'true');
         } else {
-            setDarkModeState(prefersDark);
+            // Default to dark mode for new users
+            setDarkModeState(true);
         }
     }, []);
 
