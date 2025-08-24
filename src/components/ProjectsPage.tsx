@@ -1,16 +1,74 @@
 import { oneDark } from '../theme';
 import { userProfile } from '../data/profile';
 import SectionWrapper from './SectionWrapper';
+import { useEffect, useState } from 'react';
 
 export interface ProjectsPageProps {
   darkMode: boolean;
 }
 
 export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
+  // Add GitHub-backed projects state with fallback
+  type ProjectItem = { id: number | string; title: string; description: string; technologies: string[]; link: string };
+  const [ghProjects, setGhProjects] = useState<ProjectItem[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } as const;
+
+    async function fetchProjects() {
+      setLoading(true);
+      try {
+        const owner = 'AIByJohannes';
+        const repos = ['alfred', 'elitelm', 'alfred-android'];
+        const fetched = await Promise.all(
+          repos.map(async (name) => {
+            const [repoRes, topicsRes, langsRes] = await Promise.all([
+              fetch(`https://api.github.com/repos/${owner}/${name}`, { headers }),
+              fetch(`https://api.github.com/repos/${owner}/${name}/topics`, { headers }),
+              fetch(`https://api.github.com/repos/${owner}/${name}/languages`, { headers }),
+            ]);
+            if (!repoRes.ok) throw new Error('repo fetch failed');
+            const repo = await repoRes.json();
+            const topicsJson = topicsRes.ok ? await topicsRes.json() : { names: [] };
+            const langsJson = langsRes.ok ? await langsRes.json() : {};
+            const topics: string[] = Array.isArray(topicsJson.names) ? topicsJson.names : [];
+            const languages: string[] = Object.keys(langsJson);
+            const technologies = (topics.length ? topics : languages).slice(0, 8);
+            const title = (repo.name || name).replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+            return {
+              id: repo.id ?? name,
+              title,
+              description: repo.description || 'No description provided.',
+              technologies,
+              link: repo.html_url || `https://github.com/${owner}/${name}`,
+            } as ProjectItem;
+          })
+        );
+        if (active) setGhProjects(fetched);
+      } catch {
+        // fall back silently
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    fetchProjects();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const projects = ghProjects.length ? ghProjects : userProfile.projects;
+
   return (
     <SectionWrapper title="My Projects" subtitle="A selection of my work and contributions." darkMode={darkMode}>
+      {loading && !ghProjects.length && (
+        <p className={`${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-500'}`}>Loading projects…</p>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {userProfile.projects.map((project) => (
+        {projects.map((project) => (
           <div
             key={project.id}
             className={`${darkMode ? `bg-[${oneDark.bg}] border border-[${oneDark.comment}]` : 'bg-white'} rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col`}
