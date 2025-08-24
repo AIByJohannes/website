@@ -29,7 +29,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
                   darkMode
                     ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                    : 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
                 }`}
               />
             </div>
@@ -45,7 +45,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
                   darkMode
                     ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                    : 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
                 }`}
               />
             </div>
@@ -62,7 +62,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
                 darkMode
                   ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                  : 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
               }`}
             />
           </div>
@@ -78,7 +78,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
               className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
                 darkMode
                   ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                  : 'border-gray-300 focus:ring-purple-500 focus:border-purple-500'
+                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
               }`}
             ></textarea>
           </div>
@@ -88,7 +88,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
               className={`inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors ${
                 darkMode
                   ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}] focus:ring-[${oneDark.blue}] focus:ring-offset-[${oneDark.bg}]`
-                  : 'text-white bg-purple-600 hover:bg-purple-700 focus:ring-purple-500'
+                  : 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
               }`}
             >
               Send Message
@@ -112,7 +112,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`transition-colors ${darkMode ? `text-[${oneDark.comment}] hover:text-[${social.hoverColor}]` : 'text-gray-500 hover:text-purple-600'}`}
+                className={`transition-colors ${darkMode ? `text-[${oneDark.comment}] hover:text-[${social.hoverColor}]` : 'text-gray-500 hover:text-blue-600'}`}
               >
                 {social.icon}
                 <span className="sr-only">{social.label}</span>

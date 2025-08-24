@@ -18,7 +18,7 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
             className="rounded-lg shadow-md mx-auto mb-6 w-full max-w-xs object-cover"
           />
           <h3 className={`text-2xl font-semibold mb-3 ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900'}`}>{userProfile.name}</h3>
-          <p className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-purple-600'} font-medium mb-4`}>{userProfile.tagline}</p>
+          <p className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-blue-600'} font-medium mb-4`}>{userProfile.tagline}</p>
           <p className={`${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-700'} leading-relaxed`}>{userProfile.bio}</p>
         </div>
 
@@ -42,8 +42,8 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
             <ul className={`list-disc list-inside space-y-2 ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-700'}`}>
               <li>Large Language Models (LLMs)</li>
               <li>Machine Learning Operations (MLOps)</li>
-              <li>AI Ethics and Responsible AI</li>
-              <li>Content Creation (YouTube)</li>
+              <li>AI Safety and Responsible AI</li>
+              <li>Content Creation (YouTube and Blogging)</li>
               <li>Productivity and Workflow Optimization</li>
             </ul>
           </div>

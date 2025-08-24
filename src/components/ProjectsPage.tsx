@@ -148,7 +148,7 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className={`px-2 py-1 text-xs rounded-full ${darkMode ? `bg-[${oneDark.hoverBg}] text-[${oneDark.blue}]` : 'bg-purple-100 text-purple-700'}`}
+                      className={`px-2 py-1 text-xs rounded-full ${darkMode ? `bg-[${oneDark.hoverBg}] text-[${oneDark.blue}]` : 'bg-blue-100 text-blue-700'}`}
                     >
                       {tech}
                     </span>
@@ -159,7 +159,7 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-auto inline-block text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition-colors ${darkMode ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}]` : 'text-white bg-purple-600 hover:bg-purple-700'}`}
+                className={`mt-auto inline-block text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition-colors ${darkMode ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}]` : 'text-white bg-blue-600 hover:bg-blue-700'}`}
               >
                 View Project
               </a>

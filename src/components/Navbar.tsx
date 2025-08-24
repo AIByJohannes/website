@@ -21,33 +21,59 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
     { name: 'Contact', icon: <Mail className="w-5 h-5 mr-2" />, page: 'contact' },
   ];
 
+  // Compose button classes without nested ternaries
+  const lightInactive = 'text-gray-700 hover:bg-blue-100 hover:text-blue-600';
+  const lightActive = 'bg-blue-600 text-white';
+  const darkInactive = `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]`;
+  const darkActive = `bg-[${oneDark.blue}] text-white`;
+  const navBtnCls = (isActive: boolean) => {
+    const base = 'px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors';
+    if (darkMode) {
+      return `${base} ${isActive ? darkActive : darkInactive}`;
+    }
+    return `${base} ${isActive ? lightActive : lightInactive}`;
+  };
+
+  // Other computed classes
+  const navContainerBase = 'shadow-md sticky top-0 z-50';
+  const navContainerSurface = darkMode
+    ? `bg-[${oneDark.bg}] border-b border-[${oneDark.comment}]`
+    : 'bg-white';
+  const titleClass = darkMode
+    ? `text-[${oneDark.fg}] hover:text-[${oneDark.blue}]`
+    : 'text-gray-800 hover:text-blue-600';
+  const toggleDesktopClass = darkMode
+    ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]`
+    : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600';
+  const toggleMobileClass = darkMode
+    ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}]`
+    : 'text-gray-700 hover:bg-blue-100';
+
   return (
-    <nav className={`shadow-md sticky top-0 z-50 ${darkMode ? `bg-[${oneDark.bg}] border-b border-[${oneDark.comment}]` : 'bg-white'}`}>
+    <nav className={`${navContainerBase} ${navContainerSurface}`}>
       <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
-          <div
-            className={`text-2xl font-bold cursor-pointer transition-colors ${darkMode ? `text-[${oneDark.fg}] hover:text-[${oneDark.blue}]` : 'text-gray-800 hover:text-purple-600'}`}
+          <button
+            type="button"
+            className={`text-2xl font-bold cursor-pointer transition-colors ${titleClass}`}
             onClick={() => setCurrentPage('home')}
+            aria-label="Go to Home"
           >
             {userProfile.name}
-          </div>
+          </button>
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.page}
                 onClick={() => setCurrentPage(item.page)}
-                className={`px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors ${
-                  currentPage === item.page
-                    ? `${darkMode ? `bg-[${oneDark.blue}] text-white` : 'bg-purple-600 text-white'}`
-                    : `${darkMode ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]` : 'text-gray-700 hover:bg-purple-100 hover:text-purple-600'}`
-                }`}
+                className={navBtnCls(currentPage === item.page)}
               >
                 {item.icon} {item.name}
               </button>
             ))}
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-md transition-colors ${darkMode ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]` : 'text-gray-700 hover:bg-purple-100 hover:text-purple-600'}`}
+              className={`p-2 rounded-md transition-colors ${toggleDesktopClass}`}
               aria-label="Toggle dark mode"
             >
               {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -56,14 +82,14 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
           <div className="md:hidden flex items-center">
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-md mr-2 transition-colors ${darkMode ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}]` : 'text-gray-700 hover:bg-purple-100'}`}
+              className={`p-2 rounded-md mr-2 transition-colors ${toggleMobileClass}`}
               aria-label="Toggle dark mode"
             >
               {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-md transition-colors ${darkMode ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}]` : 'text-gray-700 hover:bg-purple-100'}`}
+              className={`p-2 rounded-md transition-colors ${toggleMobileClass}`}
               aria-label="Open menu"
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -79,11 +105,7 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
                   setCurrentPage(item.page);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors mb-1 ${
-                  currentPage === item.page
-                    ? `${darkMode ? `bg-[${oneDark.blue}] text-white` : 'bg-purple-600 text-white'}`
-                    : `${darkMode ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]` : 'text-gray-700 hover:bg-purple-100 hover:text-purple-600'}`
-                }`}
+                className={`w-full text-left mb-1 ${navBtnCls(currentPage === item.page)}`}
               >
                 {item.icon} {item.name}
               </button>

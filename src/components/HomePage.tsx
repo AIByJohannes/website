@@ -12,7 +12,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
   return (
     <div
       className={`min-h-[calc(100vh-120px)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${
-        darkMode ? `bg-[${oneDark.bg}]` : 'bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50'
+        darkMode ? `bg-[${oneDark.bg}]` : 'bg-gradient-to-br from-blue-50 via-sky-50 to-cyan-50'
       }`}
     >
       <div className="text-center max-w-3xl">
@@ -24,7 +24,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
           }`}
         />
         <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900'}`}>
-          Hi, I'm <span className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-purple-600'}`}>{userProfile.name}</span>
+          Hi, I'm <span className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-blue-600'}`}>{userProfile.name}</span>
         </h1>
         <p className={`mt-4 text-xl sm:text-2xl ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-600'}`}>{userProfile.tagline}</p>
         <p className={`mt-2 text-md sm:text-lg ${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-500'}`}>
@@ -34,7 +34,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
           <button
             onClick={() => setCurrentPage('projects')}
             className={`px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-lg transition-transform transform hover:scale-105 ${
-              darkMode ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}]` : 'text-white bg-purple-600 hover:bg-purple-700'
+              darkMode ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}]` : 'text-white bg-blue-600 hover:bg-blue-700'
             }`}
           >
             View My Work
@@ -44,7 +44,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
             className={`px-8 py-3 border text-base font-medium rounded-md shadow-lg transition-transform transform hover:scale-105 ${
               darkMode
                 ? `border-[${oneDark.blue}] text-[${oneDark.blue}] bg-[${oneDark.bg}] hover:bg-[${oneDark.hoverBg}]`
-                : 'border-purple-600 text-purple-600 bg-white hover:bg-purple-50'
+                : 'border-blue-600 text-blue-600 bg-white hover:bg-blue-50'
             }`}
           >
             More About Me

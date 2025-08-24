@@ -20,7 +20,7 @@ export const YouTubePage = ({ darkMode }: YouTubePageProps) => {
   const mutedTextCls = darkMode ? `text-[${oneDark.comment}]` : 'text-gray-600';
   const cardBaseCls = darkMode ? `bg-[${oneDark.bg}] border border-[${oneDark.comment}]` : 'bg-gray-50';
   const titleTextCls = darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900';
-  const linkTextCls = darkMode ? `text-[${oneDark.blue}] hover:text-[${oneDark.cyan}]` : 'text-purple-600 hover:text-purple-800';
+  const linkTextCls = darkMode ? `text-[${oneDark.blue}] hover:text-[${oneDark.cyan}]` : 'text-blue-600 hover:text-blue-800';
 
   const extractChannelId = (url: string): string | null => {
     try {
