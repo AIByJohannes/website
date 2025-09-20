@@ -1,8 +1,8 @@
-import { oneDark } from '../theme';
-import { userProfile } from '../data/profile';
+import { oneDark } from '../theme'
+import { userProfile } from '../data/profile'
 
 export interface FooterProps {
-  darkMode: boolean;
+  darkMode: boolean
 }
 
 export const Footer = ({ darkMode }: FooterProps) => {
@@ -13,7 +13,7 @@ export const Footer = ({ darkMode }: FooterProps) => {
         <p className="mt-1">Built with React & Tailwind CSS.</p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

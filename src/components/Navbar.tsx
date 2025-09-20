@@ -1,53 +1,53 @@
-import { useState } from 'react';
-import { Briefcase, Home, Mail, Menu, Sun, Moon, User, X, Youtube } from 'lucide-react';
-import type { Dispatch, SetStateAction } from 'react';
-import { oneDark } from '../theme';
-import { userProfile } from '../data/profile';
+import { useState } from 'react'
+import { Briefcase, Home, Mail, Menu, Sun, Moon, User, X, Youtube } from 'lucide-react'
+import type { Dispatch, SetStateAction } from 'react'
+import { oneDark } from '../theme'
+import { userProfile } from '../data/profile'
 
 export interface NavbarProps {
-  setCurrentPage: Dispatch<SetStateAction<string>>;
-  currentPage: string;
-  toggleDarkMode: () => void;
-  darkMode: boolean;
+  setCurrentPage: Dispatch<SetStateAction<string>>
+  currentPage: string
+  toggleDarkMode: () => void
+  darkMode: boolean
 }
 
 export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }: NavbarProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const navItems = [
     { name: 'Home', icon: <Home className="w-5 h-5 mr-2" />, page: 'home' },
     { name: 'About', icon: <User className="w-5 h-5 mr-2" />, page: 'about' },
     { name: 'Projects', icon: <Briefcase className="w-5 h-5 mr-2" />, page: 'projects' },
     { name: 'YouTube', icon: <Youtube className="w-5 h-5 mr-2" />, page: 'youtube' },
     { name: 'Contact', icon: <Mail className="w-5 h-5 mr-2" />, page: 'contact' },
-  ];
+  ]
 
   // Compose button classes without nested ternaries
-  const lightInactive = 'text-gray-700 hover:bg-blue-100 hover:text-blue-600';
-  const lightActive = 'bg-blue-600 text-white';
-  const darkInactive = `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]`;
-  const darkActive = `bg-[${oneDark.blue}] text-white`;
+  const lightInactive = 'text-gray-700 hover:bg-blue-100 hover:text-blue-600'
+  const lightActive = 'bg-blue-600 text-white'
+  const darkInactive = `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]`
+  const darkActive = `bg-[${oneDark.blue}] text-white`
   const navBtnCls = (isActive: boolean) => {
-    const base = 'px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors';
+    const base = 'px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors'
     if (darkMode) {
-      return `${base} ${isActive ? darkActive : darkInactive}`;
+      return `${base} ${isActive ? darkActive : darkInactive}`
     }
-    return `${base} ${isActive ? lightActive : lightInactive}`;
-  };
+    return `${base} ${isActive ? lightActive : lightInactive}`
+  }
 
   // Other computed classes
-  const navContainerBase = 'shadow-md sticky top-0 z-50';
+  const navContainerBase = 'shadow-md sticky top-0 z-50'
   const navContainerSurface = darkMode
     ? `bg-[${oneDark.bg}] border-b border-[${oneDark.comment}]`
-    : 'bg-white';
+    : 'bg-white'
   const titleClass = darkMode
     ? `text-[${oneDark.fg}] hover:text-[${oneDark.blue}]`
-    : 'text-gray-800 hover:text-blue-600';
+    : 'text-gray-800 hover:text-blue-600'
   const toggleDesktopClass = darkMode
     ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}] hover:text-[${oneDark.blue}]`
-    : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600';
+    : 'text-gray-700 hover:bg-blue-100 hover:text-blue-600'
   const toggleMobileClass = darkMode
     ? `text-[${oneDark.fg}] hover:bg-[${oneDark.hoverBg}]`
-    : 'text-gray-700 hover:bg-blue-100';
+    : 'text-gray-700 hover:bg-blue-100'
 
   return (
     <nav className={`${navContainerBase} ${navContainerSurface}`}>
@@ -102,8 +102,8 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
               <button
                 key={item.page}
                 onClick={() => {
-                  setCurrentPage(item.page);
-                  setIsOpen(false);
+                  setCurrentPage(item.page)
+                  setIsOpen(false)
                 }}
                 className={`w-full text-left mb-1 ${navBtnCls(currentPage === item.page)}`}
               >
@@ -114,7 +114,7 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

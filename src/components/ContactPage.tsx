@@ -1,10 +1,10 @@
-import { Github, Linkedin, Twitter, Youtube } from 'lucide-react';
-import { oneDark } from '../theme';
-import { userProfile } from '../data/profile';
-import SectionWrapper from './SectionWrapper';
+import { Github, Linkedin, Twitter, Youtube } from 'lucide-react'
+import { oneDark } from '../theme'
+import { userProfile } from '../data/profile'
+import SectionWrapper from './SectionWrapper'
 
 export interface ContactPageProps {
-  darkMode: boolean;
+  darkMode: boolean
 }
 
 export const ContactPage = ({ darkMode }: ContactPageProps) => {
@@ -122,7 +122,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
         </div>
       </div>
     </SectionWrapper>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage

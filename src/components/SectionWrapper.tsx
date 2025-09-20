@@ -1,11 +1,11 @@
-import type { ReactNode } from 'react';
-import { oneDark } from '../theme';
+import type { ReactNode } from 'react'
+import { oneDark } from '../theme'
 
 export interface SectionWrapperProps {
-  children: ReactNode;
-  title: string;
-  subtitle?: string;
-  darkMode: boolean;
+  children: ReactNode
+  title: string
+  subtitle?: string
+  darkMode: boolean
 }
 
 export const SectionWrapper = ({ children, title, subtitle, darkMode }: SectionWrapperProps) => (
@@ -22,6 +22,6 @@ export const SectionWrapper = ({ children, title, subtitle, darkMode }: SectionW
       {children}
     </div>
   </div>
-);
+)
 
-export default SectionWrapper;
+export default SectionWrapper

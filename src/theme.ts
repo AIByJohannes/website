@@ -12,6 +12,6 @@ export const oneDark = {
   magenta: '#c678dd',
   cyan: '#56b6c2',
   hoverBg: '#3a3f4c',
-} as const;
+} as const
 
-export type Theme = typeof oneDark;
+export type Theme = typeof oneDark

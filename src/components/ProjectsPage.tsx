@@ -1,44 +1,55 @@
-import { oneDark } from '../theme';
-import { userProfile } from '../data/profile';
-import SectionWrapper from './SectionWrapper';
-import { useEffect, useState } from 'react';
+import { oneDark } from '../theme'
+import { userProfile } from '../data/profile'
+import SectionWrapper from './SectionWrapper'
+import { useEffect, useState } from 'react'
 
 export interface ProjectsPageProps {
-  darkMode: boolean;
+  darkMode: boolean
 }
 
 export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
   // Add GitHub-backed projects state with fallback
-  type ProjectItem = { id: number | string; title: string; description: string; technologies: string[]; link: string };
-  const [ghProjects, setGhProjects] = useState<ProjectItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [, setError] = useState<string | null>(null);
+  type ProjectItem = {
+    id: number | string
+    title: string
+    description: string
+    technologies: string[]
+    link: string
+  }
+
+  type ProjectCache = {
+    ts: number
+    data: ProjectItem[]
+  }
+  const [ghProjects, setGhProjects] = useState<ProjectItem[]>([])
+  const [loading, setLoading] = useState(false)
+  const [, setError] = useState<string | null>(null)
 
   // Simple local cache to reduce API calls and avoid hitting rate limits too often
-  const CACHE_KEY = 'gh_projects_cache_v1';
-  const CACHE_TTL_MS = 1000 * 60 * 60 * 6; // 6 hours
+  const CACHE_KEY = 'gh_projects_cache_v1'
+  const CACHE_TTL_MS = 1000 * 60 * 60 * 6 // 6 hours
 
   useEffect(() => {
-    let active = true;
-    const token = import.meta.env?.VITE_GITHUB_TOKEN as string | undefined;
+    let active = true
+    const token = import.meta.env?.VITE_GITHUB_TOKEN as string | undefined
     const headers: Record<string, string> = {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-    };
-    if (token) headers.Authorization = `Bearer ${token}`;
+    }
+    if (token) headers.Authorization = `Bearer ${token}`
 
     async function fetchProjects() {
-      setLoading(true);
-      setError(null);
+      setLoading(true)
+      setError(null)
       try {
         // Try cache first
-        const cachedRaw = typeof window !== 'undefined' ? localStorage.getItem(CACHE_KEY) : null;
+        const cachedRaw = typeof window !== 'undefined' ? localStorage.getItem(CACHE_KEY) : null
         if (cachedRaw) {
           try {
-            const cached = JSON.parse(cachedRaw) as { ts: number; data: ProjectItem[] };
-            const isFresh = Date.now() - cached.ts < CACHE_TTL_MS;
+            const cached = JSON.parse(cachedRaw) as ProjectCache
+            const isFresh = Date.now() - cached.ts < CACHE_TTL_MS
             if (isFresh && cached.data?.length) {
-              if (active) setGhProjects(cached.data);
+              if (active) setGhProjects(cached.data)
               // Still revalidate in background
             }
           } catch {
@@ -46,77 +57,77 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
           }
         }
 
-        const owner = 'AIByJohannes';
-        const repos = ['alfred', 'elitelm', 'alfred-android'];
+        const owner = 'AIByJohannes'
+        const repos = ['alfred', 'elitelm', 'alfred-android']
         const fetched = await Promise.all(
           repos.map(async (name) => {
             const [repoRes, topicsRes, langsRes] = await Promise.all([
               fetch(`https://api.github.com/repos/${owner}/${name}`, { headers }),
               fetch(`https://api.github.com/repos/${owner}/${name}/topics`, { headers }),
               fetch(`https://api.github.com/repos/${owner}/${name}/languages`, { headers }),
-            ]);
+            ])
 
             if (!repoRes.ok) {
               // Bubble up a helpful message for rate limits
               if (repoRes.status === 403) {
-                const text = await repoRes.text();
-                throw new Error('GitHub rate limit hit. Add VITE_GITHUB_TOKEN or wait and retry. ' + text);
+                const text = await repoRes.text()
+                throw new Error('GitHub rate limit hit. Add VITE_GITHUB_TOKEN or wait and retry. ' + text)
               }
-              throw new Error(`Repo fetch failed for ${name} (${repoRes.status})`);
+              throw new Error(`Repo fetch failed for ${name} (${repoRes.status})`)
             }
 
-            const repo = await repoRes.json();
-            const topicsJson = topicsRes.ok ? await topicsRes.json() : { names: [] };
-            const langsJson = langsRes.ok ? await langsRes.json() : {};
-            const topics: string[] = Array.isArray(topicsJson.names) ? topicsJson.names : [];
-            const languages: string[] = Object.keys(langsJson);
-            const technologies = (topics.length ? topics : languages).slice(0, 8);
-            const title = (repo.name || name).replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+            const repo = await repoRes.json()
+            const topicsJson = topicsRes.ok ? await topicsRes.json() : { names: [] }
+            const langsJson = langsRes.ok ? await langsRes.json() : {}
+            const topics: string[] = Array.isArray(topicsJson.names) ? topicsJson.names : []
+            const languages: string[] = Object.keys(langsJson)
+            const technologies = (topics.length ? topics : languages).slice(0, 8)
+            const title = (repo.name || name).replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())
             return {
               id: repo.id ?? name,
               title,
               description: repo.description || 'No description provided.',
               technologies,
               link: repo.html_url || `https://github.com/${owner}/${name}`,
-            } as ProjectItem;
+            } as ProjectItem
           })
-        );
+        )
         if (active) {
-          setGhProjects(fetched);
+          setGhProjects(fetched)
           try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: fetched }));
+            localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: fetched }))
           } catch {
             // ignore storage errors
           }
         }
-    } catch (e: unknown) {
+      } catch (e: unknown) {
         // fall back gracefully and surface a small hint if rate-limited
         if (active) {
-      const msg = e instanceof Error ? e.message : 'Failed to load GitHub projects. Showing fallback.';
-      setError(msg);
+          const msg = e instanceof Error ? e.message : 'Failed to load GitHub projects. Showing fallback.'
+          setError(msg)
           // If we have stale cache, prefer showing that
           try {
-            const cachedRaw = localStorage.getItem(CACHE_KEY);
+            const cachedRaw = localStorage.getItem(CACHE_KEY)
             if (cachedRaw) {
-              const cached = JSON.parse(cachedRaw) as { ts: number; data: ProjectItem[] };
-              if (cached.data?.length) setGhProjects(cached.data);
+              const cached = JSON.parse(cachedRaw) as ProjectCache
+              if (cached.data?.length) setGhProjects(cached.data)
             }
           } catch {
             // ignore cache parse errors
           }
         }
       } finally {
-        if (active) setLoading(false);
+        if (active) setLoading(false)
       }
     }
 
-    fetchProjects();
+    fetchProjects()
     return () => {
-      active = false;
-    };
-  }, [CACHE_KEY, CACHE_TTL_MS]);
+      active = false
+    }
+  }, [CACHE_KEY, CACHE_TTL_MS])
 
-  const projects = ghProjects.length ? ghProjects : userProfile.projects;
+  const projects = ghProjects.length ? ghProjects : userProfile.projects
 
   return (
     <SectionWrapper title="My Projects" subtitle="A selection of my work and contributions." darkMode={darkMode}>
@@ -134,9 +145,10 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
               src={`https://placehold.co/600x400/${oneDark.cyan.substring(1)}/${oneDark.fg.substring(1)}?text=${project.title.replace(/\s+/g, '+')}`}
               alt={project.title}
               className="w-full h-48 object-cover"
-              onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                (e.target as HTMLImageElement).onerror = null;
-                (e.target as HTMLImageElement).src = `https://placehold.co/600x400/c4b5fd/3730a3?text=Error`;
+              onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                const target = event.target as HTMLImageElement
+                target.onerror = null
+                target.src = `https://placehold.co/600x400/c4b5fd/3730a3?text=Error`
               }}
             />
             <div className="p-6 flex-grow flex flex-col">
@@ -168,7 +180,7 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
         ))}
       </div>
     </SectionWrapper>
-  );
-};
+  )
+}
 
-export default ProjectsPage;
+export default ProjectsPage

@@ -1,5 +1,5 @@
-import { Brain, Cloud, Code, Cpu, Database, Mic, Settings } from 'lucide-react';
-import { oneDark } from '../theme';
+import { Brain, Cloud, Code, Cpu, Database, Mic, Settings } from 'lucide-react'
+import { oneDark } from '../theme'
 
 export const userProfile = {
   name: 'Johannes Copeland',
@@ -65,6 +65,6 @@ export const userProfile = {
       link: 'https://www.youtube.com/results?search_query=Run+AI+on+YOUR+Laptop+with+ONE+COMMAND',
     },
   ],
-} as const;
+} as const
 
-export type UserProfile = typeof userProfile;
+export type UserProfile = typeof userProfile

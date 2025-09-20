@@ -1,10 +1,10 @@
-import { oneDark } from '../theme';
-import { userProfile } from '../data/profile';
-import SectionWrapper from './SectionWrapper';
-import profileImage from '../assets/pfp_2025.jpg';
+import { oneDark } from '../theme'
+import { userProfile } from '../data/profile'
+import SectionWrapper from './SectionWrapper'
+import profileImage from '../assets/pfp_2025.jpg'
 
 export interface AboutPageProps {
-  darkMode: boolean;
+  darkMode: boolean
 }
 
 export const AboutPage = ({ darkMode }: AboutPageProps) => {
@@ -50,7 +50,7 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
         </div>
       </div>
     </SectionWrapper>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage

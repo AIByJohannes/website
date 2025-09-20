@@ -1,11 +1,11 @@
-import type { Dispatch, SetStateAction } from 'react';
-import { oneDark } from '../theme';
-import { userProfile } from '../data/profile';
-import profileImage from '../assets/pfp_2025.jpg';
+import type { Dispatch, SetStateAction } from 'react'
+import { oneDark } from '../theme'
+import { userProfile } from '../data/profile'
+import profileImage from '../assets/pfp_2025.jpg'
 
 export interface HomePageProps {
-  setCurrentPage: Dispatch<SetStateAction<string>>;
-  darkMode: boolean;
+  setCurrentPage: Dispatch<SetStateAction<string>>
+  darkMode: boolean
 }
 
 export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
@@ -52,7 +52,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage
