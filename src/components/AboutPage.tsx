@@ -44,7 +44,6 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
               <li>Machine Learning Operations (MLOps)</li>
               <li>AI Safety and Responsible AI</li>
               <li>Content Creation (YouTube and Blogging)</li>
-              <li>Productivity and Workflow Optimization</li>
             </ul>
           </div>
         </div>

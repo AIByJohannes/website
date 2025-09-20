@@ -24,7 +24,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
           }`}
         />
         <h1 className={`text-4xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900'}`}>
-          Hi, I'm <span className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-blue-600'}`}>{userProfile.name}</span>
+          <span className={`${darkMode ? `text-[${oneDark.blue}]` : 'text-blue-600'}`}>{userProfile.name}</span>
         </h1>
         <p className={`mt-4 text-xl sm:text-2xl ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-600'}`}>{userProfile.tagline}</p>
         <p className={`mt-2 text-md sm:text-lg ${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-500'}`}>

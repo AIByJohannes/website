@@ -1,13 +1,13 @@
-import { Brain, Cloud, Code, Cpu, Database, Mic, Settings } from 'lucide-react'
+import { Brain, Code, Cpu, Mic, Settings } from 'lucide-react'
 import { oneDark } from '../theme'
 
 export const userProfile = {
   name: 'Johannes Copeland',
-  tagline: 'AI Engineer & Content Creator',
-  location: 'Hamburg, Germany 🇩🇪',
+  tagline: 'AI Engineer',
+  location: 'Hamburg, Germany',
   email: 'contact@johannescopeland.com',
   linkedin: 'https://www.linkedin.com/in/johannscopeland',
-  twitter: 'https://twitter.com/AIByJohannes',
+  twitter: 'https://x.com/AIByJohannes',
   github: 'https://github.com/AIByJohannes',
   youtube:
     'https://www.youtube.com/channel/UCbHkKsUfa_jjooXU59EzmoQ',
@@ -15,12 +15,10 @@ export const userProfile = {
   skills: [
     { name: 'Python', icon: <Code className={`w-6 h-6 text-[${oneDark.blue}]`} /> },
     { name: 'PyTorch', icon: <Brain className={`w-6 h-6 text-[${oneDark.darkYellow}]`} /> },
-    { name: 'LLMs', icon: <Cpu className={`w-6 h-6 text-[${oneDark.magenta}]`} /> },
+    { name: 'NLP', icon: <Cpu className={`w-6 h-6 text-[${oneDark.magenta}]`} /> },
     { name: 'FastAPI', icon: <Code className={`w-6 h-6 text-[${oneDark.green}]`} /> },
     { name: 'Docker', icon: <Settings className={`w-6 h-6 text-[${oneDark.cyan}]`} /> },
-    { name: 'Supabase', icon: <Database className={`w-6 h-6 text-[${oneDark.green}]`} /> },
     { name: 'Hugging Face', icon: <Mic className={`w-6 h-6 text-[${oneDark.lightYellow}]`} /> },
-    { name: 'Cloud (GCP/AWS)', icon: <Cloud className={`w-6 h-6 text-[${oneDark.cyan}]`} /> },
   ],
   projects: [
     {
