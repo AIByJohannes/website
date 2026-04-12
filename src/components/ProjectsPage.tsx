@@ -1,4 +1,4 @@
-import { oneDark } from '../theme'
+import { oneDark, oneLight } from '../theme'
 import { userProfile } from '../data/profile'
 import SectionWrapper from './SectionWrapper'
 import { useEffect, useState } from 'react'
@@ -8,6 +8,8 @@ export interface ProjectsPageProps {
 }
 
 export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
+  const theme = darkMode ? oneDark : oneLight
+
   // Add GitHub-backed projects state with fallback
   type ProjectItem = {
     id: number | string
@@ -132,14 +134,18 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
   return (
     <SectionWrapper title="My Projects" subtitle="A selection of my work and contributions." darkMode={darkMode}>
       {loading && !ghProjects.length && (
-        <p className={`${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-500'}`}>Loading projects…</p>
+        <p style={{ color: theme.muted }}>Loading projects…</p>
       )}
   {/* Intentionally no error message shown to users; fallback projects render silently. */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <div
             key={project.id}
-            className={`${darkMode ? `bg-[${oneDark.bg}] border border-[${oneDark.comment}]` : 'bg-white'} rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col`}
+            className="rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col border"
+            style={{
+              backgroundColor: theme.card,
+              borderColor: theme.border,
+            }}
           >
             <img
               src={`https://placehold.co/600x400/${oneDark.cyan.substring(1)}/${oneDark.fg.substring(1)}?text=${project.title.replace(/\s+/g, '+')}`}
@@ -152,15 +158,34 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
               }}
             />
             <div className="p-6 flex-grow flex flex-col">
-              <h3 className={`text-xl font-semibold mb-2 ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-900'}`}>{project.title}</h3>
-              <p className={`${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-700'} text-sm mb-4 flex-grow`}>{project.description}</p>
+              <h3
+                className="text-xl font-semibold mb-2"
+                style={{ color: theme.heading }}
+              >
+                {project.title}
+              </h3>
+              <p
+                className="text-sm mb-4 flex-grow"
+                style={{ color: theme.muted }}
+              >
+                {project.description}
+              </p>
               <div className="mb-4">
-                <h4 className={`text-xs font-semibold uppercase mb-1 ${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-500'}`}>Technologies:</h4>
+                <h4
+                  className="text-xs font-semibold uppercase mb-1"
+                  style={{ color: theme.muted }}
+                >
+                  Technologies:
+                </h4>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className={`px-2 py-1 text-xs rounded-full ${darkMode ? `bg-[${oneDark.hoverBg}] text-[${oneDark.blue}]` : 'bg-blue-100 text-blue-700'}`}
+                      className="px-2 py-1 text-xs rounded-full"
+                      style={{
+                        backgroundColor: theme.hoverBg,
+                        color: theme.blue,
+                      }}
                     >
                       {tech}
                     </span>
@@ -171,7 +196,13 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`mt-auto inline-block text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition-colors ${darkMode ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}]` : 'text-white bg-blue-600 hover:bg-blue-700'}`}
+                className="mt-auto inline-block text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition-colors"
+                style={{
+                  backgroundColor: theme.blue,
+                  color: '#ffffff',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = theme.linkHover }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = theme.blue }}
               >
                 View Project
               </a>

@@ -1,4 +1,4 @@
-import { oneDark } from '../theme'
+import { oneDark, oneLight } from '../theme'
 import { userProfile } from '../data/profile'
 
 export interface FooterProps {
@@ -6,9 +6,20 @@ export interface FooterProps {
 }
 
 export const Footer = ({ darkMode }: FooterProps) => {
+  const theme = darkMode ? oneDark : oneLight
+
   return (
-    <footer className={`${darkMode ? `bg-[${oneDark.bg}] border-t border-[${oneDark.comment}]` : 'bg-white border-t border-gray-200'}`}>
-      <div className={`container mx-auto px-6 py-8 text-center text-sm ${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-600'}`}>
+    <footer
+      className="border-t"
+      style={{
+        backgroundColor: theme.bg,
+        borderColor: theme.border,
+      }}
+    >
+      <div
+        className="container mx-auto px-6 py-8 text-center text-sm"
+        style={{ color: theme.muted }}
+      >
         <p>© {new Date().getFullYear()} {userProfile.name}. All rights reserved.</p>
         <p className="mt-1">Built with React & Tailwind CSS.</p>
       </div>

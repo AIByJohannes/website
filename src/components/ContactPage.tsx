@@ -1,5 +1,5 @@
 import { Github, Linkedin, Twitter, Youtube } from 'lucide-react'
-import { oneDark } from '../theme'
+import { oneDark, oneLight } from '../theme'
 import { userProfile } from '../data/profile'
 import SectionWrapper from './SectionWrapper'
 
@@ -8,17 +8,29 @@ export interface ContactPageProps {
 }
 
 export const ContactPage = ({ darkMode }: ContactPageProps) => {
+  const theme = darkMode ? oneDark : oneLight
+
   return (
     <SectionWrapper
       title="Get In Touch"
       subtitle="I'm always open to discussing new projects, creative ideas, or opportunities."
       darkMode={darkMode}
     >
-      <div className={`${darkMode ? `bg-[${oneDark.bg}] border border-[${oneDark.comment}]` : 'bg-white'} p-8 sm:p-10 rounded-xl shadow-xl max-w-3xl mx-auto`}>
+      <div
+        className="p-8 sm:p-10 rounded-xl shadow-xl max-w-3xl mx-auto border"
+        style={{
+          backgroundColor: theme.card,
+          borderColor: theme.border,
+        }}
+      >
         <form action={`mailto:${userProfile.email}`} method="POST" encType="text/plain">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="name" className={`block text-sm font-medium ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-700'}`}>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium"
+                style={{ color: theme.fg }}
+              >
                 Full Name
               </label>
               <input
@@ -26,15 +38,20 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 name="name"
                 id="name"
                 required
-                className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
-                  darkMode
-                    ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
-                }`}
+                className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
+                style={{
+                  backgroundColor: theme.hoverBg,
+                  borderColor: theme.border,
+                  color: theme.fg,
+                }}
               />
             </div>
             <div>
-              <label htmlFor="email" className={`block text-sm font-medium ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-700'}`}>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium"
+                style={{ color: theme.fg }}
+              >
                 Email Address
               </label>
               <input
@@ -42,16 +59,21 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 name="email"
                 id="email"
                 required
-                className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
-                  darkMode
-                    ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                    : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
-                }`}
+                className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
+                style={{
+                  backgroundColor: theme.hoverBg,
+                  borderColor: theme.border,
+                  color: theme.fg,
+                }}
               />
             </div>
           </div>
           <div className="mt-6">
-            <label htmlFor="subject" className={`block text-sm font-medium ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-700'}`}>
+            <label
+              htmlFor="subject"
+              className="block text-sm font-medium"
+              style={{ color: theme.fg }}
+            >
               Subject
             </label>
             <input
@@ -59,15 +81,20 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
               name="subject"
               id="subject"
               required
-              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
-                darkMode
-                  ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
-              }`}
+              className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
+              style={{
+                backgroundColor: theme.hoverBg,
+                borderColor: theme.border,
+                color: theme.fg,
+              }}
             />
           </div>
           <div className="mt-6">
-            <label htmlFor="message" className={`block text-sm font-medium ${darkMode ? `text-[${oneDark.fg}]` : 'text-gray-700'}`}>
+            <label
+              htmlFor="message"
+              className="block text-sm font-medium"
+              style={{ color: theme.fg }}
+            >
               Message
             </label>
             <textarea
@@ -75,44 +102,53 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
               id="message"
               rows={4}
               required
-              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm ${
-                darkMode
-                  ? `bg-[${oneDark.hoverBg}] border-[${oneDark.comment}] text-[${oneDark.fg}] focus:ring-[${oneDark.blue}] focus:border-[${oneDark.blue}]`
-                  : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'
-              }`}
+              className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
+              style={{
+                backgroundColor: theme.hoverBg,
+                borderColor: theme.border,
+                color: theme.fg,
+              }}
             ></textarea>
           </div>
           <div className="mt-8 text-center">
             <button
               type="submit"
-              className={`inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors ${
-                darkMode
-                  ? `text-white bg-[${oneDark.blue}] hover:bg-[${oneDark.cyan}] focus:ring-[${oneDark.blue}] focus:ring-offset-[${oneDark.bg}]`
-                  : 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
-              }`}
+              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
+              style={{
+                backgroundColor: theme.blue,
+                color: '#ffffff',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = theme.linkHover }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = theme.blue }}
             >
               Send Message
             </button>
           </div>
         </form>
 
-        <div className={`mt-10 pt-8 text-center ${darkMode ? `border-t border-[${oneDark.comment}]` : 'border-t border-gray-200'}`}>
-          <p className={`${darkMode ? `text-[${oneDark.comment}]` : 'text-gray-600'} mb-4`}>
+        <div
+          className="mt-10 pt-8 text-center"
+          style={{ borderTop: `1px solid ${theme.border}` }}
+        >
+          <p style={{ color: theme.muted }} className="mb-4">
             Or connect with me on social media:
           </p>
           <div className="flex justify-center space-x-6">
             {[
-              { href: userProfile.linkedin, icon: <Linkedin className="w-8 h-8" />, label: 'LinkedIn', hoverColor: oneDark.blue },
-              { href: userProfile.twitter, icon: <Twitter className="w-8 h-8" />, label: 'Twitter', hoverColor: oneDark.blue },
-              { href: userProfile.github, icon: <Github className="w-8 h-8" />, label: 'GitHub', hoverColor: oneDark.fg },
-              { href: userProfile.youtube, icon: <Youtube className="w-8 h-8" />, label: 'YouTube', hoverColor: oneDark.red },
+              { href: userProfile.linkedin, icon: <Linkedin className="w-8 h-8" />, label: 'LinkedIn', hoverColor: theme.blue },
+              { href: userProfile.twitter, icon: <Twitter className="w-8 h-8" />, label: 'Twitter', hoverColor: theme.blue },
+              { href: userProfile.github, icon: <Github className="w-8 h-8" />, label: 'GitHub', hoverColor: theme.fg },
+              { href: userProfile.youtube, icon: <Youtube className="w-8 h-8" />, label: 'YouTube', hoverColor: theme.red },
             ].map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`transition-colors ${darkMode ? `text-[${oneDark.comment}] hover:text-[${social.hoverColor}]` : 'text-gray-500 hover:text-blue-600'}`}
+                className="transition-colors"
+                style={{ color: theme.muted }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = social.hoverColor }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = theme.muted }}
               >
                 {social.icon}
                 <span className="sr-only">{social.label}</span>
