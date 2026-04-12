@@ -33,4 +33,7 @@ build:
 
 # Build and deploy to origin/main
 deploy:
-    ./scripts/build.sh && git add -A && git commit -m "Release: $(git rev-parse --short HEAD)" && git push
+    ./scripts/build.sh
+    git add -A
+    if ! git diff --cached --quiet; then git commit -m "Release: $(git rev-parse --short HEAD)"; else printf '%s\n' 'No deployment changes to commit.'; fi
+    git push
