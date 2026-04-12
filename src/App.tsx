@@ -6,11 +6,12 @@ import ProjectsPage from './components/ProjectsPage'
 import YouTubePage from './components/YouTubePage'
 import ContactPage from './components/ContactPage'
 import Footer from './components/Footer'
-import { oneDark } from './theme'
+import { oneDark, oneLight } from './theme'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [darkMode, setDarkModeState] = useState(true)
+  const theme = darkMode ? oneDark : oneLight
 
   useEffect(() => {
     const storedPreference = localStorage.getItem('darkMode')
@@ -28,7 +29,7 @@ export default function App() {
       document.documentElement.style.backgroundColor = oneDark.bg
     } else {
       document.documentElement.classList.remove('dark')
-      document.documentElement.style.backgroundColor = ''
+      document.documentElement.style.backgroundColor = oneLight.bg
     }
     localStorage.setItem('darkMode', String(darkMode))
   }, [darkMode])
@@ -55,7 +56,7 @@ export default function App() {
   }
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${darkMode ? `bg-[${oneDark.bg}]` : 'bg-gray-100'}`}>
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300`} style={{ backgroundColor: theme.bg, color: theme.fg }}>
       <Navbar
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}

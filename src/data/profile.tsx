@@ -13,12 +13,12 @@ export const userProfile = {
     'https://www.youtube.com/channel/UCbHkKsUfa_jjooXU59EzmoQ',
   bio: "I'm an AI engineer passionate about building intelligent systems that make life better. By day, I work on machine learning models and software solutions; by night, I'm pursuing my Master's in Artificial Intelligence and sharing insights on my YouTube channel about AI and productivity.",
   skills: [
-    { name: 'Python', icon: <Code className={`w-6 h-6 text-[${oneDark.blue}]`} /> },
-    { name: 'PyTorch', icon: <Brain className={`w-6 h-6 text-[${oneDark.darkYellow}]`} /> },
-    { name: 'NLP', icon: <Cpu className={`w-6 h-6 text-[${oneDark.magenta}]`} /> },
-    { name: 'FastAPI', icon: <Code className={`w-6 h-6 text-[${oneDark.green}]`} /> },
-    { name: 'Docker', icon: <Settings className={`w-6 h-6 text-[${oneDark.cyan}]`} /> },
-    { name: 'Hugging Face', icon: <Mic className={`w-6 h-6 text-[${oneDark.lightYellow}]`} /> },
+    { name: 'Python', icon: <Code className="w-6 h-6" style={{ color: oneDark.blue }} /> },
+    { name: 'PyTorch', icon: <Brain className="w-6 h-6" style={{ color: oneDark.darkYellow }} /> },
+    { name: 'NLP', icon: <Cpu className="w-6 h-6" style={{ color: oneDark.magenta }} /> },
+    { name: 'FastAPI', icon: <Code className="w-6 h-6" style={{ color: oneDark.green }} /> },
+    { name: 'Docker', icon: <Settings className="w-6 h-6" style={{ color: oneDark.cyan }} /> },
+    { name: 'Hugging Face', icon: <Mic className="w-6 h-6" style={{ color: oneDark.lightYellow }} /> },
   ],
   projects: [
     {

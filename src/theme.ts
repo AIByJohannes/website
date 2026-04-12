@@ -1,9 +1,16 @@
-// Atom One Dark Palette centralised theme
+// Atom One Dark Palette centralised theme (matches blog design)
 export const oneDark = {
   bg: '#282c34',
+  bg2: '#21252b',
+  card: '#2c313c',
   fg: '#abb2bf',
+  heading: '#e6e6e6',
+  muted: '#9da5b4',
   comment: '#5c6370',
   gutter: '#4b5263',
+  border: '#3a3f4b',
+  link: '#61afef',
+  linkHover: '#56b6c2',
   red: '#e06c75',
   lightYellow: '#e5c07b',
   darkYellow: '#d19a66',
@@ -14,4 +21,27 @@ export const oneDark = {
   hoverBg: '#3a3f4c',
 } as const
 
-export type Theme = typeof oneDark
+// Atom One Light Palette (light mode companion)
+export const oneLight = {
+  bg: '#fafafa',
+  bg2: '#f0f0f0',
+  card: '#ffffff',
+  fg: '#383a42',
+  heading: '#2c2c2c',
+  muted: '#696c77',
+  comment: '#a0a1a7',
+  gutter: '#e5e5e5',
+  border: '#e1e1e1',
+  link: '#4078f2',
+  linkHover: '#0184bc',
+  red: '#e45649',
+  lightYellow: '#c18401',
+  darkYellow: '#986801',
+  green: '#50a14f',
+  blue: '#4078f2',
+  magenta: '#a626a4',
+  cyan: '#0184bc',
+  hoverBg: '#f5f5f5',
+} as const
+
+export type Theme = typeof oneDark | typeof oneLight
