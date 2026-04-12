@@ -47,23 +47,46 @@ This project was bootstrapped with a Vite template for React and TypeScript.
 
 2.  **Install dependencies:**
     ```bash
-    npm install
+    just setup
     ```
 
-### Available Scripts
+## ⚡ Just Workflow (Recommended)
 
-In the project directory, you can run the following commands from your `package.json`:
+This project uses [just](https://github.com/casey/just) as the task runner. Install `just` first, then run:
 
-* **`npm run dev`**
-  Runs the app in development mode with Hot Module Replacement (HMR).
-  Open [http://localhost:5173](http://localhost:5173) (or the port shown in your terminal) to view it in the browser.
+```bash
+# Install dependencies
+just setup
 
-* **`npm run build`**
-  Builds the app for production to the `dist` folder.
-  It correctly bundles React in production mode and optimizes the build for the best performance.
+# Start development server
+just dev
 
-* **`npm run lint`**
-  Lints the project files using ESLint.
+# Run linter
+just lint
 
-* **`npm run preview`**
-  Serves the production build locally to preview it.
+# Build for production (outputs to docs/ for GitHub Pages)
+just build
+
+# Preview production build locally
+just preview
+
+# Build and deploy to origin/main
+just deploy
+```
+
+## 📦 NPM Scripts (Alternative)
+
+If you prefer not to use `just`, you can run the underlying commands directly:
+
+* **`npm run dev`** — Development server with hot reload
+* **`npm run build`** — Production build to `docs/`
+* **`npm run lint`** — Lint project files
+* **`npm run preview`** — Preview production build locally
+
+## 🚀 Deployment (GitHub Pages)
+
+This repo publishes to the `docs/` folder (see `outDir` in `vite.config.ts`).
+
+- Local build: `just build` or `./scripts/build.sh`
+- Commit and push the updated `docs/` folder
+- In GitHub: Settings → Pages → Deploy from a branch → select your default branch and `/docs`
