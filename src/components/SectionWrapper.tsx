@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 
 export interface SectionWrapperProps {
   children: ReactNode
@@ -9,7 +9,7 @@ export interface SectionWrapperProps {
 }
 
 export const SectionWrapper = ({ children, title, subtitle, darkMode }: SectionWrapperProps) => {
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   return (
     <div

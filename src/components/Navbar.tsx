@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Briefcase, Home, Mail, Menu, Sun, Moon, User, X, Youtube } from 'lucide-react'
 import type { Dispatch, SetStateAction } from 'react'
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
 
 export interface NavbarProps {
@@ -13,7 +13,7 @@ export interface NavbarProps {
 
 export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
   const navItems = [
     { name: 'Home', icon: <Home className="w-5 h-5 mr-2" />, page: 'home' },
     { name: 'About', icon: <User className="w-5 h-5 mr-2" />, page: 'about' },

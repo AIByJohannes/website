@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
 import { ExternalLink, PlayCircle } from 'lucide-react'
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
 import SectionWrapper from './SectionWrapper'
+import Card from './ui/Card'
 
 export interface YouTubePageProps {
   darkMode: boolean
 }
 
 export const YouTubePage = ({ darkMode }: YouTubePageProps) => {
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   type Video = {
     id: string
@@ -122,9 +123,8 @@ export const YouTubePage = ({ darkMode }: YouTubePageProps) => {
           </div>
         )}
         {list.map((video) => (
-          <div
+          <Card
             key={video.id}
-            className="rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border"
             style={{
               backgroundColor: theme.card,
               borderColor: theme.border,
@@ -161,7 +161,7 @@ export const YouTubePage = ({ darkMode }: YouTubePageProps) => {
                 <PlayCircle className="w-4 h-4 mr-1" /> Watch Video
               </a>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </SectionWrapper>

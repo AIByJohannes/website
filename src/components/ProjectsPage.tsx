@@ -1,6 +1,7 @@
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
 import SectionWrapper from './SectionWrapper'
+import Card from './ui/Card'
 import { useEffect, useState } from 'react'
 
 export interface ProjectsPageProps {
@@ -8,7 +9,7 @@ export interface ProjectsPageProps {
 }
 
 export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   // Add GitHub-backed projects state with fallback
   type ProjectItem = {
@@ -139,16 +140,16 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
   {/* Intentionally no error message shown to users; fallback projects render silently. */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
-          <div
+          <Card
             key={project.id}
-            className="rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col border"
             style={{
               backgroundColor: theme.card,
               borderColor: theme.border,
             }}
+            className="flex flex-col"
           >
             <img
-              src={`https://placehold.co/600x400/${oneDark.cyan.substring(1)}/${oneDark.fg.substring(1)}?text=${project.title.replace(/\s+/g, '+')}`}
+              src={`https://placehold.co/600x400/${theme.cyan.substring(1)}/${theme.fg.substring(1)}?text=${project.title.replace(/\s+/g, '+')}`}
               alt={project.title}
               className="w-full h-48 object-cover"
               onError={(event: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -207,7 +208,7 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
                 View Project
               </a>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </SectionWrapper>

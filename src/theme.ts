@@ -45,3 +45,6 @@ export const oneLight = {
 } as const
 
 export type Theme = typeof oneDark | typeof oneLight
+
+export const getTheme = (darkMode: boolean): typeof oneDark | typeof oneLight =>
+  darkMode ? oneDark : oneLight

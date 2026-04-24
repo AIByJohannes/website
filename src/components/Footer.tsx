@@ -1,4 +1,4 @@
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
 
 export interface FooterProps {
@@ -6,7 +6,7 @@ export interface FooterProps {
 }
 
 export const Footer = ({ darkMode }: FooterProps) => {
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   return (
     <footer

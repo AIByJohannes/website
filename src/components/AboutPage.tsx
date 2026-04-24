@@ -1,6 +1,7 @@
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
 import SectionWrapper from './SectionWrapper'
+import Card from './ui/Card'
 import profileImage from '../assets/pfp_2025.jpg'
 
 export interface AboutPageProps {
@@ -8,7 +9,7 @@ export interface AboutPageProps {
 }
 
 export const AboutPage = ({ darkMode }: AboutPageProps) => {
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   return (
     <SectionWrapper title="About Me" subtitle="A glimpse into my journey and expertise." darkMode={darkMode}>
@@ -52,22 +53,23 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {userProfile.skills.map((skill) => (
-                <div
+                <Card
                   key={skill.name}
-                  className="p-4 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow border"
                   style={{
                     backgroundColor: theme.card,
                     borderColor: theme.border,
                   }}
                 >
-                  <div className="mb-2">{skill.icon}</div>
-                  <p
-                    className="text-sm font-medium"
-                    style={{ color: theme.fg }}
-                  >
-                    {skill.name}
-                  </p>
-                </div>
+                  <div className="p-4 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow">
+                    <div className="mb-2">{skill.icon}</div>
+                    <p
+                      className="text-sm font-medium"
+                      style={{ color: theme.fg }}
+                    >
+                      {skill.name}
+                    </p>
+                  </div>
+                </Card>
               ))}
             </div>
           </div>

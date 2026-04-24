@@ -1,7 +1,8 @@
 import type { Dispatch, SetStateAction } from 'react'
-import { oneDark, oneLight } from '../theme'
+import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
 import profileImage from '../assets/pfp_2025.jpg'
+import Button from './ui/Button'
 
 export interface HomePageProps {
   setCurrentPage: Dispatch<SetStateAction<string>>
@@ -9,7 +10,7 @@ export interface HomePageProps {
 }
 
 export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   return (
     <div
@@ -33,35 +34,12 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
           Based in {userProfile.location}
         </p>
         <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-          <button
-            onClick={() => setCurrentPage('projects')}
-            className="px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-lg transition-transform transform hover:scale-105"
-            style={{
-              backgroundColor: theme.blue,
-              color: '#ffffff',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = theme.linkHover }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = theme.blue }}
-          >
+          <Button variant="primary" onClick={() => setCurrentPage('projects')} theme={theme}>
             View My Work
-          </button>
-          <button
-            onClick={() => setCurrentPage('about')}
-            className="px-8 py-3 border text-base font-medium rounded-md shadow-lg transition-transform transform hover:scale-105"
-            style={{
-              borderColor: theme.blue,
-              color: theme.blue,
-              backgroundColor: theme.bg,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = theme.hoverBg
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = theme.bg
-            }}
-          >
+          </Button>
+          <Button variant="secondary" onClick={() => setCurrentPage('about')} theme={theme}>
             More About Me
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -6,12 +6,12 @@ import ProjectsPage from './components/ProjectsPage'
 import YouTubePage from './components/YouTubePage'
 import ContactPage from './components/ContactPage'
 import Footer from './components/Footer'
-import { oneDark, oneLight } from './theme'
+import { getTheme, oneDark, oneLight } from './theme'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [darkMode, setDarkModeState] = useState(true)
-  const theme = darkMode ? oneDark : oneLight
+  const theme = getTheme(darkMode)
 
   useEffect(() => {
     const storedPreference = localStorage.getItem('darkMode')
