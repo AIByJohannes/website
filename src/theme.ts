@@ -21,26 +21,26 @@ export const oneDark = {
   hoverBg: '#3a3f4c',
 } as const
 
-// Atom One Light Palette (light mode companion)
+// Atom One Light Palette (matches Android One Light theme)
 export const oneLight = {
   bg: '#fafafa',
   bg2: '#f0f0f0',
-  card: '#ffffff',
+  card: '#f0f0f0',
   fg: '#383a42',
-  heading: '#2c2c2c',
+  heading: '#383a42',
   muted: '#696c77',
   comment: '#a0a1a7',
   gutter: '#e5e5e5',
   border: '#e1e1e1',
-  link: '#4078f2',
-  linkHover: '#0184bc',
+  link: '#0184bc',
+  linkHover: '#0997b3',
   red: '#e45649',
   lightYellow: '#c18401',
   darkYellow: '#986801',
   green: '#50a14f',
-  blue: '#4078f2',
+  blue: '#0184bc',
   magenta: '#a626a4',
-  cyan: '#0184bc',
+  cyan: '#0997b3',
   hoverBg: '#f5f5f5',
 } as const
 
