@@ -21,7 +21,6 @@ export const Footer = ({ darkMode }: FooterProps) => {
         style={{ color: theme.muted }}
       >
         <p>© {new Date().getFullYear()} {userProfile.name}. All rights reserved.</p>
-        <p className="mt-1">Built with React & Tailwind CSS.</p>
       </div>
     </footer>
   )
