@@ -1,0 +1,5 @@
+schema: spec-driven
+
+context: |
+  React 19, TypeScript, Vite and Tailwind portfolio. Vite builds the deployment artifact to docs/.
+  Preserve website layout and existing light/dark theme behavior and persistence.

@@ -10,18 +10,11 @@ import { getTheme, oneDark, oneLight } from './theme'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
-  const [darkMode, setDarkModeState] = useState(true)
-  const theme = getTheme(darkMode)
-
-  useEffect(() => {
+  const [darkMode, setDarkModeState] = useState(() => {
     const storedPreference = localStorage.getItem('darkMode')
-    if (storedPreference !== null) {
-      setDarkModeState(storedPreference === 'true')
-    } else {
-      // Default to dark mode for new users
-      setDarkModeState(true)
-    }
-  }, [])
+    return storedPreference === null || storedPreference === 'true'
+  })
+  const theme = getTheme(darkMode)
 
   useEffect(() => {
     if (darkMode) {

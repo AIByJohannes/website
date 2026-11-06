@@ -15,10 +15,11 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
     <SectionWrapper title="About Me" subtitle="A glimpse into my journey and expertise." darkMode={darkMode}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div
-          className="p-6 sm:p-8 rounded-xl shadow-lg border"
+          className="p-6 sm:p-8 rounded-xl border"
           style={{
             backgroundColor: theme.card,
             borderColor: theme.border,
+            boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
           }}
         >
           <img
@@ -60,7 +61,7 @@ export const AboutPage = ({ darkMode }: AboutPageProps) => {
                     borderColor: theme.border,
                   }}
                 >
-                  <div className="p-4 rounded-lg shadow-md flex flex-col items-center text-center hover:shadow-xl transition-shadow">
+                  <div className="p-4 rounded-lg flex flex-col items-center text-center">
                     <div className="mb-2">{skill.icon}</div>
                     <p
                       className="text-sm font-medium"

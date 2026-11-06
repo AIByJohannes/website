@@ -7,6 +7,9 @@ module.exports = {
   darkMode: 'class', // This matches the logic in your App.tsx
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
       colors: {
         oneDark: {
           bg: '#282c34',

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { ExternalLink, PlayCircle } from 'lucide-react'
 import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
@@ -101,12 +102,14 @@ export const YouTubePage = ({ darkMode }: YouTubePageProps) => {
         href={userProfile.youtube}
         target="_blank"
         rel="noopener noreferrer"
-        className="mb-12 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white transition-colors"
+        className="blog-button mb-12 inline-flex items-center px-6 py-3 text-base font-medium rounded-md transition-colors"
         style={{
-          backgroundColor: theme.red,
-        }}
-        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#c75661' }}
-        onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = theme.red }}
+          '--button-bg': theme.bg2,
+          '--button-fg': theme.heading,
+          '--button-border': theme.border,
+          '--button-hover-bg': theme.bg,
+          '--button-hover-fg': theme.linkHover,
+        } as CSSProperties}
       >
         <ExternalLink className="w-5 h-5 mr-2" /> Visit Channel
       </a>

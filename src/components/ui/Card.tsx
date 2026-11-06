@@ -8,8 +8,8 @@ export interface CardProps {
 
 export const Card = ({ children, className = '', style }: CardProps) => (
   <div
-    className={`rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 border ${className}`}
-    style={style}
+    className={`rounded-xl overflow-hidden border ${className}`}
+    style={{ ...style, boxShadow: '0 4px 16px rgba(0,0,0,0.25)' }}
   >
     {children}
   </div>

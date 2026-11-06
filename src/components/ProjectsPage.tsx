@@ -3,6 +3,7 @@ import { userProfile } from '../data/profile'
 import SectionWrapper from './SectionWrapper'
 import Card from './ui/Card'
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 
 export interface ProjectsPageProps {
   darkMode: boolean
@@ -197,13 +198,14 @@ export const ProjectsPage = ({ darkMode }: ProjectsPageProps) => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-auto inline-block text-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition-colors"
+                className="blog-button mt-auto inline-block text-center px-4 py-2 text-sm font-medium rounded-md transition-colors"
                 style={{
-                  backgroundColor: theme.blue,
-                  color: '#ffffff',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = theme.linkHover }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = theme.blue }}
+                  '--button-bg': theme.bg2,
+                  '--button-fg': theme.heading,
+                  '--button-border': theme.border,
+                  '--button-hover-bg': theme.bg,
+                  '--button-hover-fg': theme.linkHover,
+                } as CSSProperties}
               >
                 View Project
               </a>

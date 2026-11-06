@@ -23,6 +23,27 @@ body {
   min-height: 100vh;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'JetBrains Mono', 'JetBrains Mono Nerd Font', 'JetBrains Nerd Font', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.blog-button {
+  border: 1px solid var(--button-border);
+  background-color: var(--button-bg);
+  color: var(--button-fg);
+}
+
+.blog-button:hover:not(:disabled),
+.blog-button:focus-visible:not(:disabled) {
+  background-color: var(--button-hover-bg);
+  color: var(--button-hover-fg);
+}
+
+.blog-button:focus-visible:not(:disabled) {
+  outline: 2px solid var(--button-hover-fg);
+  outline-offset: 2px;
+}
+
 /* Monospace font class for terminal-style elements */
 .font-mono {
   font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;

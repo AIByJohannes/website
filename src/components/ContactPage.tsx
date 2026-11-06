@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { Github, Linkedin, Twitter, Youtube } from 'lucide-react'
 import { getTheme } from '../theme'
 import { userProfile } from '../data/profile'
@@ -42,7 +43,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                   required
                   className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
                   style={{
-                    backgroundColor: theme.hoverBg,
+                    backgroundColor: theme.bg2,
                     borderColor: theme.border,
                     color: theme.fg,
                   }}
@@ -63,7 +64,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                   required
                   className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
                   style={{
-                    backgroundColor: theme.hoverBg,
+                    backgroundColor: theme.bg2,
                     borderColor: theme.border,
                     color: theme.fg,
                   }}
@@ -85,7 +86,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 required
                 className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
                 style={{
-                  backgroundColor: theme.hoverBg,
+                  backgroundColor: theme.bg2,
                   borderColor: theme.border,
                   color: theme.fg,
                 }}
@@ -106,7 +107,7 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
                 required
                 className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none sm:text-sm"
                 style={{
-                  backgroundColor: theme.hoverBg,
+                  backgroundColor: theme.bg2,
                   borderColor: theme.border,
                   color: theme.fg,
                 }}
@@ -115,13 +116,14 @@ export const ContactPage = ({ darkMode }: ContactPageProps) => {
             <div className="mt-8 text-center">
               <button
                 type="submit"
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors"
+                className="blog-button inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md transition-colors"
                 style={{
-                  backgroundColor: theme.blue,
-                  color: '#ffffff',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = theme.linkHover }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = theme.blue }}
+                  '--button-bg': theme.bg2,
+                  '--button-fg': theme.heading,
+                  '--button-border': theme.border,
+                  '--button-hover-bg': theme.bg,
+                  '--button-hover-fg': theme.linkHover,
+                } as CSSProperties}
               >
                 Send Message
               </button>

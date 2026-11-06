@@ -22,18 +22,7 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
     { name: 'Contact', icon: <Mail className="w-5 h-5 mr-2" />, page: 'contact' },
   ]
 
-  // Nav button classes based on theme
-  const navBtnCls = (isActive: boolean) => {
-    const base = 'px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors'
-    if (darkMode) {
-      return `${base} ${isActive
-        ? `text-white`
-        : `hover:text-[${theme.blue}]`}`
-    }
-    return `${base} ${isActive
-      ? `text-white`
-      : `hover:text-[${theme.blue}]`}`
-  }
+  const navBtnCls = 'px-3 py-2 rounded-md text-sm font-medium flex items-center transition-colors border'
 
   return (
     <nav
@@ -63,10 +52,11 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
                 <button
                   key={item.page}
                   onClick={() => setCurrentPage(item.page)}
-                  className={navBtnCls(isActive)}
+                  className={navBtnCls}
                   style={{
-                    backgroundColor: isActive ? theme.blue : 'transparent',
-                    color: isActive ? '#ffffff' : theme.fg,
+                    backgroundColor: isActive ? theme.card : 'transparent',
+                    color: isActive ? theme.linkHover : theme.fg,
+                    borderColor: isActive ? theme.border : 'transparent',
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
@@ -136,10 +126,11 @@ export const Navbar = ({ setCurrentPage, currentPage, toggleDarkMode, darkMode }
                     setCurrentPage(item.page)
                     setIsOpen(false)
                   }}
-                  className={`w-full text-left ${navBtnCls(isActive)}`}
+                  className={`w-full text-left ${navBtnCls}`}
                   style={{
-                    backgroundColor: isActive ? theme.blue : 'transparent',
-                    color: isActive ? '#ffffff' : theme.fg,
+                    backgroundColor: isActive ? theme.card : 'transparent',
+                    color: isActive ? theme.linkHover : theme.fg,
+                    borderColor: isActive ? theme.border : 'transparent',
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {

@@ -25,7 +25,7 @@ export const HomePage = ({ setCurrentPage, darkMode }: HomePageProps) => {
           style={{ border: `4px solid ${theme.border}` }}
         />
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">
-          <span style={{ color: theme.blue }}>{userProfile.name}</span>
+          <span style={{ color: theme.heading }}>{userProfile.name}</span>
         </h1>
         <p className="mt-4 text-xl sm:text-2xl" style={{ color: theme.fg }}>
           {userProfile.tagline}
